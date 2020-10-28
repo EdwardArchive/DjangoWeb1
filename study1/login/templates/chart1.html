@@ -1,0 +1,72 @@
+<script src="/static/canvasjs-3.2/canvasjs.min.js"></script>
+<script type="text/javascript" src="/static/jQuery-3.5.1.js"></script>
+<!DOCTYPE HTML>
+<html>
+<head>
+	<link rel="stylesheet" href="/static/table.css">
+</head>
+<meta charset="UTF-8">
+<script>
+$(document).ready(function(){
+	$.ajax({
+		url:"{% url 'chart1ajax' %}",
+		dataType:'json',
+		success:function(datares) {
+			var chart = new CanvasJS.Chart("chartContainer", {
+				animationEnabled: true,
+				title: {
+					text: "Desktop Search Engine Market Share - 2016"
+				},
+				data: [{
+					type: "pie",
+					startAngle: 240,
+					yValueFormatString: "##0.00'%'",
+					indexLabel: "{label} {y}",
+					dataPoints: datares
+				}]
+			});
+			chart.render();
+		}
+	});
+});
+</script>
+
+<body>
+<div id="chartContainer" style="height: 370px; max-width: 920px; margin: 100px auto;"></div>
+	<table class="tg">
+	<thead>
+	  <tr>
+		<th class="tg-j1i3">이름</th>
+		<th class="tg-j1i3">컴퓨터개론</th>
+		<th class="tg-j1i3">알고리즘</th>
+		<th class="tg-j1i3">C언어</th>
+		<th class="tg-j1i3">이산수학</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <tr>
+		<td class="tg-phtq">백두산</td>
+		<td class="tg-phtq">A+</td>
+		<td class="tg-phtq">B</td>
+		<td class="tg-phtq">B+</td>
+		<td class="tg-phtq">A</td>
+	  </tr>
+	  <tr>
+		<td class="tg-0pky">임꺽정</td>
+		<td class="tg-0pky">B+</td>
+		<td class="tg-0pky">B-</td>
+		<td class="tg-0pky">B+</td>
+		<td class="tg-0pky">A</td>
+	  </tr>
+	  <tr>
+		<td class="tg-phtq">김난나</td>
+		<td class="tg-phtq">C</td>
+		<td class="tg-phtq">C-</td>
+		<td class="tg-phtq">D</td>
+		<td class="tg-phtq">C+</td>
+	  </tr>
+	</tbody>
+	</table>
+</body>
+</html>
+
